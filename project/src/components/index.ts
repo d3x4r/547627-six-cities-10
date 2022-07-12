@@ -10,3 +10,4 @@ export * from './locations-item';
 export * from './favorites';
 export * from './favorite-item';
 export * from './near-places';
+export * from './private-route';
