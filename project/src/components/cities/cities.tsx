@@ -1,4 +1,3 @@
-
 import { PlaceCard } from '../../components';
 import { PLACES } from '../../';
 
