@@ -1,15 +1,24 @@
 import { FavoriteItem } from '../../components';
-import { AMSTERDAM_FAVORITES, COLOGNE_FAVORITES } from './data';
 
+import { IOffer } from '../../types/offer';
 
-const Favorites = () => (
-  <section className="favorites">
-    <h1 className="favorites__title">Saved listing</h1>
-    <ul className="favorites__list">
-      <FavoriteItem groupName="Amsterdam" places={AMSTERDAM_FAVORITES} />
-      <FavoriteItem groupName="Cologne" places={COLOGNE_FAVORITES} />
-    </ul>
-  </section>
-);
+interface IFavoritesProps {
+  favorites: IOffer[]
+}
+
+const Favorites = ({ favorites }: IFavoritesProps) => {
+  const groupedFavorites = favorites.reduce((acc, place) => {
+    acc.set(place.city, [...acc.get(place.city) || [], place]);
+    return acc;
+  }, new Map<string, IOffer[]>());
+  return (
+    <section className="favorites">
+      <h1 className="favorites__title">Saved listing</h1>
+      <ul className="favorites__list">
+        {[...groupedFavorites.entries()].map((group) => <FavoriteItem key={group[0]} groupName={group[0]} places={group[1]} />)}
+      </ul>
+    </section>
+  );
+};
 
 export default Favorites;

@@ -1,9 +1,9 @@
 import { Cities } from '../../components';
 import { Header, Tabs } from '../../components';
-import { PLACES } from '../../';
+import { IOffer } from '../../types/offer';
 
 interface IMainPageProps {
-  places: typeof PLACES,
+  places: IOffer[]
 }
 
 const MainPage = ({ places }: IMainPageProps) => (

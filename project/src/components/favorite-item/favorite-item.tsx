@@ -1,9 +1,9 @@
 import { LocationsItem, PlaceCard } from '../../components';
-import { PLACES } from '../../';
+import { IOffer } from '../../types/offer';
 
 interface IFavoriteItemProps {
   groupName: string,
-  places: typeof PLACES
+  places: IOffer[]
 }
 
 const FavoriteItem = ({ places, groupName }: IFavoriteItemProps) => (
@@ -12,7 +12,7 @@ const FavoriteItem = ({ places, groupName }: IFavoriteItemProps) => (
       <LocationsItem name={groupName} />
     </div>
     <div className="favorites__places">
-      {places.map((place, index) => <PlaceCard key={`${place.name + index}`} place={place} isFavoriteCard />)}
+      {places.map((place) => <PlaceCard key={place.id} place={place} isFavoriteCard />)}
     </div>
   </li>
 );

@@ -1,3 +1,3 @@
-type Rating = 1 | 2 | 3 | 4 | 5;
+import { Rating } from '../../types/offer';
 
-export const getRatingWidth = (rating: Rating): number => 20 * rating;
+export const getRatingWidth = (rating: Rating): number => rating ? 20 * Number(rating) : 0;

@@ -1,8 +1,8 @@
-import { PlaceCard } from '../../components';
-import { PLACES } from '../../';
+import { PlacesList } from '../../components';
+import { IOffer } from '../../types/offer';
 
 interface ICitiesProps {
-  places: typeof PLACES,
+  places: IOffer[],
 }
 
 const Cities = ({ places }: ICitiesProps) => {
@@ -28,9 +28,7 @@ const Cities = ({ places }: ICitiesProps) => {
               <li className="places__option" tabIndex={0}>Top rated first</li>
             </ul>
           </form>
-          <div className="cities__places-list places__list tabs__content">
-            {places.map((place, index) => <PlaceCard key={`${place.name + index}`} place={place} />)}
-          </div>
+          <PlacesList places={places} />
         </section>
         <div className="cities__right-section">
           <section className="cities__map map"></section>
