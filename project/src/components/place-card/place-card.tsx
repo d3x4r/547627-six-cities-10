@@ -1,23 +1,15 @@
+import { Dispatch } from 'react';
+import { Link } from 'react-router-dom';
 import { getRatingWidth } from './utils';
+import { IOffer } from '../../types/offer';
 
 interface IPlaceCardProps {
-  place: {
-    isPremium?: boolean;
-    isBookMark?: boolean,
-    img: {
-      href: string,
-      src: string,
-    },
-    price: number,
-    priceText: string,
-    name: string,
-    type: string,
-    rating: 1 | 2 | 3 | 4 | 5,
-  };
-  isFavoriteCard?: boolean,
+  place: IOffer;
+  isFavoriteCard?: boolean;
+  onSelect?: Dispatch<React.SetStateAction<number | null>>;
 }
 
-const PlaceCard = ({ place: { name, type, price, priceText, img, rating }, isFavoriteCard = false }: IPlaceCardProps) => {
+const PlaceCard = ({ place: { id, name, type, price, priceText, img, rating }, isFavoriteCard = false, onSelect = () => ({}) }: IPlaceCardProps) => {
   const imgWidth = isFavoriteCard ? 150 : 260;
   const imgHeight = isFavoriteCard ? 110 : 200;
   const cardClassName = isFavoriteCard ? 'favorites__card' : 'cities__card';
@@ -25,7 +17,11 @@ const PlaceCard = ({ place: { name, type, price, priceText, img, rating }, isFav
   const imgClassName = isFavoriteCard ? 'favorites__image-wrapper' : 'cities__image-wrapper';
 
   return (
-    <article className={`${cardClassName} place-card`}>
+    <article
+      className={`${cardClassName} place-card`}
+      onMouseEnter={() => onSelect(id)}
+      onMouseLeave={() => onSelect(null)}
+    >
       <div className={`${imgClassName} place-card__image-wrapper`}>
         <a href={img.href}>
           <img className="place-card__image" src={img.src} width={imgWidth} height={imgHeight} alt="Place image" />
@@ -51,7 +47,7 @@ const PlaceCard = ({ place: { name, type, price, priceText, img, rating }, isFav
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{name}</a>
+          <Link to={`/offer/${String(id)}`}>{name}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

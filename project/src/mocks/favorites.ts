@@ -1,4 +1,8 @@
-export const AMSTERDAM_FAVORITES = [{
+import { IOffer } from '../types/offer';
+import { Rating } from '../const';
+
+export const favorites: IOffer[] = [{
+  id: 1,
   isPremium: true,
   isBookMark: true,
   img: {
@@ -9,9 +13,11 @@ export const AMSTERDAM_FAVORITES = [{
   priceText: 'night',
   name: 'Nice, cozy, warm big bed apartment',
   type: 'Apartment',
-  rating: 5 as const,
+  rating: Rating.Perfect,
+  city: 'amsterdam',
 },
 {
+  id: 2,
   isPremium: true,
   isBookMark: true,
   img: {
@@ -22,10 +28,11 @@ export const AMSTERDAM_FAVORITES = [{
   priceText: 'night',
   name: 'Wood and stone place',
   type: 'Private room',
-  rating: 4 as const,
-}];
-
-export const COLOGNE_FAVORITES = [{
+  rating: Rating.Good,
+  city: 'amsterdam',
+},
+{
+  id: 3,
   isPremium: true,
   isBookMark: true,
   img: {
@@ -36,5 +43,8 @@ export const COLOGNE_FAVORITES = [{
   priceText: 'night',
   name: 'White castle',
   type: 'Apartment',
-  rating: 5 as const,
+  rating: Rating.Perfect,
+  city: 'cologne',
 }];
+
+
