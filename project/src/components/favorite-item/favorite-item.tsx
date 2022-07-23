@@ -1,5 +1,6 @@
 import { LocationsItem, PlaceCard } from '../../components';
 import { IOffer } from '../../types/offer';
+import { CardType } from '../place-card/const';
 
 interface IFavoriteItemProps {
   groupName: string,
@@ -12,7 +13,7 @@ const FavoriteItem = ({ places, groupName }: IFavoriteItemProps) => (
       <LocationsItem name={groupName} />
     </div>
     <div className="favorites__places">
-      {places.map((place) => <PlaceCard key={place.id} place={place} isFavoriteCard />)}
+      {places.map((place) => <PlaceCard key={place.id} place={place} cardType={CardType.favorite} />)}
     </div>
   </li>
 );

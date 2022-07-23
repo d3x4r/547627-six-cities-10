@@ -14,3 +14,5 @@ export * from './private-route';
 export * from './places-list';
 export * from './review-form';
 export * from './map';
+export * from './reviews';
+export * from './review';
