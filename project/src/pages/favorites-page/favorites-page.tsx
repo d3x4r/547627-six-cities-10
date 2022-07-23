@@ -1,11 +1,11 @@
 import { Header, Footer, Favorites } from '../../components';
 import { IOffer } from '../../types/offer';
 
-interface IFavoritesPageProps {
-  favorites: IOffer[]
+type FavoritesPagePropsType = {
+  favorites: IOffer[],
 }
 
-const FavoritesPage = ({ favorites }: IFavoritesPageProps) => (
+const FavoritesPage = ({ favorites }: FavoritesPagePropsType) => (
   <div className="page">
     <Header withNavigation />
 

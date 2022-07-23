@@ -2,11 +2,11 @@ import { useState } from 'react';
 import { PlaceCard } from '../place-card';
 import { IOffer } from '../../types/offer';
 
-interface IPlacesListProps {
-  places: IOffer[];
+type PlacesListPropsTypes = {
+  places: IOffer[],
 }
 
-const PlacesList = ({ places }: IPlacesListProps) => {
+const PlacesList = ({ places }: PlacesListPropsTypes) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [selectedCard, setSelectedCard] = useState<number | null>(null);
   return (
