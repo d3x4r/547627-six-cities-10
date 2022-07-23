@@ -16,6 +16,10 @@ export const offers: IOffer[] = [
     type: 'Apartment',
     rating: Rating.Good,
     city: 'amsterdam',
+    points: {
+      lat: 52.3909553943508,
+      lng: 4.85309666406198,
+    },
   }, {
     id: 2,
     isPremium: false,
@@ -30,6 +34,10 @@ export const offers: IOffer[] = [
     type: 'Private room',
     rating: Rating.Good,
     city: 'amsterdam',
+    points: {
+      lat: 52.369553943508,
+      lng: 4.85309666406198,
+    },
   },
   {
     id: 3,
@@ -45,6 +53,10 @@ export const offers: IOffer[] = [
     type: 'Apartment',
     rating: Rating.Good,
     city: 'amsterdam',
+    points: {
+      lat: 52.3909553943508,
+      lng: 4.929309666406198,
+    },
   },
   {
     id: 4,
@@ -60,19 +72,9 @@ export const offers: IOffer[] = [
     type: 'Apartment',
     rating: Rating.Perfect,
     city: 'amsterdam',
-  },
-  {
-    id: 5,
-    isBookMark: true,
-    isPremium: false,
-    img: {
-      href: '#',
-      src: 'img/room.jpg',
+    points: {
+      lat: 52.3809553943508,
+      lng: 4.939309666406198,
     },
-    price: 80,
-    priceText: 'night',
-    name: 'Wood and stone place',
-    type: 'Private room',
-    rating: Rating.Good,
-    city: 'amsterdam',
-  }];
+  }
+];
