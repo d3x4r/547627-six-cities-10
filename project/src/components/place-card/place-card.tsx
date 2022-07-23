@@ -4,14 +4,13 @@ import { getRatingWidth } from '../../utils';
 import { IOffer } from '../../types/offer';
 import { CardType } from './const';
 
-interface IPlaceCardProps {
-  place: IOffer;
-  // isFavoriteCard?: boolean;
-  onSelect?: Dispatch<React.SetStateAction<number | null>>;
-  cardType?: CardType;
+type PlaceCardPropsTypes = {
+  place: IOffer,
+  onSelect?: Dispatch<React.SetStateAction<number | null>>,
+  cardType?: CardType,
 }
 
-const PlaceCard = ({ place: { id, name, type, price, priceText, img, rating }, cardType = CardType.cities, onSelect = () => ({}) }: IPlaceCardProps) => {
+const PlaceCard = ({ place: { id, name, type, price, priceText, img, rating }, cardType = CardType.cities, onSelect = () => ({}) }: PlaceCardPropsTypes) => {
   const imgWidth = cardType === CardType.favorite ? 150 : 260;
   const imgHeight = cardType === CardType.favorite ? 110 : 200;
 

@@ -1,8 +1,8 @@
 import { IReview } from '../../types/review';
 import { getRatingWidth } from '../../utils';
 
-interface IReviewProps {
-  review: IReview
+type ReviewPropsType = {
+  review: IReview,
 }
 
 const Review = ({
@@ -12,7 +12,7 @@ const Review = ({
     rating,
     text
   },
-}: IReviewProps
+}: ReviewPropsType
 ) => (
   <li className="reviews__item">
     <div className="reviews__user user">

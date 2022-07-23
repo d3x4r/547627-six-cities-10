@@ -2,11 +2,11 @@ import { ReviewForm } from '../review-form';
 import { Review } from '../review';
 import { IReview } from '../../types/review';
 
-interface IReviewsProps {
-  reviews: IReview[]
+type ReviewsPropsType = {
+  reviews: IReview[],
 }
 
-const Reviews = ({ reviews }: IReviewsProps) => (
+const Reviews = ({ reviews }: ReviewsPropsType) => (
   <section className="property__reviews reviews">
     <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
     <ul className="reviews__list">

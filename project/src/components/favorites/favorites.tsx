@@ -2,11 +2,11 @@ import { FavoriteItem } from '../../components';
 
 import { IOffer } from '../../types/offer';
 
-interface IFavoritesProps {
-  favorites: IOffer[]
+type FavoritesPropsType = {
+  favorites: IOffer[],
 }
 
-const Favorites = ({ favorites }: IFavoritesProps) => {
+const Favorites = ({ favorites }: FavoritesPropsType) => {
   const groupedFavorites = favorites.reduce((acc, place) => {
     acc.set(place.city, [...acc.get(place.city) || [], place]);
     return acc;

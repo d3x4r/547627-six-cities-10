@@ -2,11 +2,11 @@ import { Cities } from '../../components';
 import { Header, Tabs } from '../../components';
 import { IOffer } from '../../types/offer';
 
-interface IMainPageProps {
-  places: IOffer[]
+type MainPagePropsType = {
+  places: IOffer[],
 }
 
-const MainPage = ({ places }: IMainPageProps) => (
+const MainPage = ({ places }: MainPagePropsType) => (
   <div className="page page--gray page--main">
     <Header withNavigation />
     <Tabs />

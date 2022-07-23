@@ -2,11 +2,11 @@ import { PlacesList } from '../../components';
 import { IOffer } from '../../types/offer';
 import { Map } from '../map';
 
-interface ICitiesProps {
+type CitiesPropsType = {
   places: IOffer[],
 }
 
-const Cities = ({ places }: ICitiesProps) => {
+const Cities = ({ places }: CitiesPropsType) => {
   const placesCount = places.length;
   return (
     <div className="cities">

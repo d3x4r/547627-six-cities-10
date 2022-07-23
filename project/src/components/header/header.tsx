@@ -2,11 +2,11 @@ import { Link } from 'react-router-dom';
 import { Navigation } from '../navigation';
 import { AppRoute } from '../../const';
 
-interface IHeaderProps {
-  withNavigation?: boolean;
+type HeaderPropsType = {
+  withNavigation?: boolean,
 }
 
-const Header = ({ withNavigation }: IHeaderProps) => (
+const Header = ({ withNavigation }: HeaderPropsType) => (
   <header className="header">
     <div className="container">
       <div className="header__wrapper">
