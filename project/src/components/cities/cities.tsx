@@ -1,5 +1,6 @@
 import { PlacesList } from '../../components';
 import { IOffer } from '../../types/offer';
+import { Map } from '../map';
 
 interface ICitiesProps {
   places: IOffer[],
@@ -31,7 +32,9 @@ const Cities = ({ places }: ICitiesProps) => {
           <PlacesList places={places} />
         </section>
         <div className="cities__right-section">
-          <section className="cities__map map"></section>
+          <section className="cities__map map">
+            <Map places={places} />
+          </section>
         </div>
       </div>
     </div>

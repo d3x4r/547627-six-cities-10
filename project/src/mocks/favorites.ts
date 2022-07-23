@@ -15,6 +15,10 @@ export const favorites: IOffer[] = [{
   type: 'Apartment',
   rating: Rating.Perfect,
   city: 'amsterdam',
+  points: {
+    lat: 52.3909553943508,
+    lng: 4.85309666406198,
+  },
 },
 {
   id: 2,
@@ -30,6 +34,10 @@ export const favorites: IOffer[] = [{
   type: 'Private room',
   rating: Rating.Good,
   city: 'amsterdam',
+  points: {
+    lat: 52.3909553943508,
+    lng: 4.85309666406198,
+  },
 },
 {
   id: 3,
@@ -45,6 +53,10 @@ export const favorites: IOffer[] = [{
   type: 'Apartment',
   rating: Rating.Perfect,
   city: 'cologne',
+  points: {
+    lat: 52.3909553943508,
+    lng: 4.85309666406198,
+  },
 }];
 
 

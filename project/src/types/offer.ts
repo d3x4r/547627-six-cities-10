@@ -13,5 +13,9 @@ export interface IOffer {
   priceText: string;
   name: string;
   type: string;
-  rating: Rating
+  rating: Rating;
+  points: {
+    lat: number,
+    lng: number,
+  }
 }

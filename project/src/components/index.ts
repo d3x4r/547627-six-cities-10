@@ -13,3 +13,4 @@ export * from './near-places';
 export * from './private-route';
 export * from './places-list';
 export * from './review-form';
+export * from './map';
