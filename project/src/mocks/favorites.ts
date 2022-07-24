@@ -19,6 +19,7 @@ export const favorites: IOffer[] = [{
     lat: 52.3909553943508,
     lng: 4.85309666406198,
   },
+  popularity: 12,
 },
 {
   id: 2,
@@ -38,6 +39,7 @@ export const favorites: IOffer[] = [{
     lat: 52.3909553943508,
     lng: 4.85309666406198,
   },
+  popularity: 35
 },
 {
   id: 3,
@@ -57,6 +59,7 @@ export const favorites: IOffer[] = [{
     lat: 52.3909553943508,
     lng: 4.85309666406198,
   },
+  popularity: 81
 }];
 
 

@@ -1,4 +1,3 @@
-import { Dispatch } from 'react';
 import { Link } from 'react-router-dom';
 import { getRatingWidth } from '../../utils';
 import { IOffer } from '../../types/offer';
@@ -6,7 +5,7 @@ import { CardType } from './const';
 
 type PlaceCardPropsTypes = {
   place: IOffer,
-  onSelect?: Dispatch<React.SetStateAction<number | null>>,
+  onSelect?: (param: IOffer['id'] | null) => void
   cardType?: CardType,
 }
 

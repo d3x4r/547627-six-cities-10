@@ -18,4 +18,5 @@ export interface IOffer {
     lat: number,
     lng: number,
   }
+  popularity: number,
 }

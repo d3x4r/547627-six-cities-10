@@ -16,3 +16,4 @@ export * from './review-form';
 export * from './map';
 export * from './reviews';
 export * from './review';
+export * from './places-options';

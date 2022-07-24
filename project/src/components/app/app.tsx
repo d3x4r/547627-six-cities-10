@@ -11,14 +11,13 @@ import { PrivateRoute } from '../private-route';
 import { IOffer } from '../../types/offer';
 
 type AppPropsType = {
-  places: IOffer[],
   favorites: IOffer[],
 }
 
-export const App = ({ places, favorites }: AppPropsType) => (
+export const App = ({ favorites }: AppPropsType) => (
   <BrowserRouter>
     <Routes>
-      <Route path={AppRoute.Root} element={<MainPage places={places} />} />
+      <Route path={AppRoute.Root} element={<MainPage />} />
       <Route path={AppRoute.Login} element={<LoginPage />} />
       <Route path={AppRoute.Offer} element={<RoomPage />} />
       <Route path={AppRoute.Favorites} element={<PrivateRoute authorizationStatus={AuthorizationStatus.Auth }><FavoritesPage favorites={favorites} /></PrivateRoute>} />
