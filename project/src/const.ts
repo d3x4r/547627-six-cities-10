@@ -26,8 +26,10 @@ export enum Rating {
   Terribly = '1',
 }
 
-export const URL_MARKER_DEFAULT =
-  'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg';
+export const MarkerIcon = {
+  DEFAULT: 'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg',
+  SELECTED: `${process.env.PUBLIC_URL}/img/pin-active.svg`,
+};
 
 export enum City {
   Paris = 'Paris',

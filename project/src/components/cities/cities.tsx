@@ -1,15 +1,10 @@
 import { PlacesList } from '..';
 import { CitiesEmpty } from '../cities-empty';
-import { IOffer } from '../../types/offer';
 import { Map } from '../map';
 import { useAppSelector } from '../../hooks';
 import { PlacesOptions } from '../places-options';
 
-type CitiesPropsType = {
-  places: IOffer[],
-}
-
-const Cities = ({ places }: CitiesPropsType) => {
+const Cities = () => {
   const { offers, selectedCity } = useAppSelector((state) => state);
 
   return (
@@ -25,7 +20,7 @@ const Cities = ({ places }: CitiesPropsType) => {
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
-                <Map places={places} />
+                <Map places={offers} />
               </section>
             </div>
           </div>

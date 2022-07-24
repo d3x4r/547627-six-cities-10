@@ -1,16 +1,23 @@
-import React, { useRef, useEffect } from 'react';
-import { Icon, Marker } from 'leaflet';
+import { useRef, useEffect } from 'react';
+import { Icon, Marker, } from 'leaflet';
 import { IOffer } from '../../types/offer';
 import { useMap } from '../../hooks/use-map';
-import { URL_MARKER_DEFAULT } from '../../const';
+import { MarkerIcon } from '../../const';
 import 'leaflet/dist/leaflet.css';
+import { useAppSelector } from '../../hooks';
 
 type MapPropsType = {
   places: IOffer[],
 }
 
 const defaultCustomIcon = new Icon({
-  iconUrl: URL_MARKER_DEFAULT,
+  iconUrl: MarkerIcon.DEFAULT,
+  iconSize: [40, 40],
+  iconAnchor: [20, 40]
+});
+
+const selectedCustomIcon = new Icon({
+  iconUrl: MarkerIcon.SELECTED,
   iconSize: [40, 40],
   iconAnchor: [20, 40]
 });
@@ -18,6 +25,7 @@ const defaultCustomIcon = new Icon({
 const Map = ({ places }: MapPropsType) => {
   const mapRef = useRef(null);
   const map = useMap(mapRef, places[0]);
+  const highlightedOffer = useAppSelector((state) => state.highlightedOffer);
 
   useEffect(() => {
     if (map) {
@@ -28,11 +36,12 @@ const Map = ({ places }: MapPropsType) => {
         });
 
         marker
-          .setIcon(defaultCustomIcon)
+          .setIcon(place.id === highlightedOffer ? selectedCustomIcon : defaultCustomIcon)
           .addTo(map);
+
       });
     }
-  }, [map, places]);
+  }, [map, places, highlightedOffer]);
 
   return <div style={{ height: '100%' }} ref={mapRef}></div>;
 };
