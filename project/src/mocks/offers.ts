@@ -1,5 +1,5 @@
 import { IOffer } from '../types/offer';
-import { Rating } from '../const';
+import { Rating, City } from '../const';
 
 export const offers: IOffer[] = [
   {
@@ -15,7 +15,7 @@ export const offers: IOffer[] = [
     name: 'Beautiful & luxurious apartment at great location',
     type: 'Apartment',
     rating: Rating.Good,
-    city: 'amsterdam',
+    city: City.Amsterdam,
     points: {
       lat: 52.3909553943508,
       lng: 4.85309666406198,
@@ -33,7 +33,7 @@ export const offers: IOffer[] = [
     name: 'Wood and stone place',
     type: 'Private room',
     rating: Rating.Good,
-    city: 'amsterdam',
+    city: City.Amsterdam,
     points: {
       lat: 52.369553943508,
       lng: 4.85309666406198,
@@ -52,7 +52,7 @@ export const offers: IOffer[] = [
     name: 'Canal View Prinsengracht',
     type: 'Apartment',
     rating: Rating.Good,
-    city: 'amsterdam',
+    city: City.Amsterdam,
     points: {
       lat: 52.3909553943508,
       lng: 4.929309666406198,
@@ -71,7 +71,7 @@ export const offers: IOffer[] = [
     name: 'Nice, cozy, warm big bed apartment',
     type: 'Apartment',
     rating: Rating.Perfect,
-    city: 'amsterdam',
+    city: City.Amsterdam,
     points: {
       lat: 52.3809553943508,
       lng: 4.939309666406198,
