@@ -1,3 +1,10 @@
+import {
+  sortOfferByPriceASC,
+  sortOfferByPriceDESC,
+  sortOfferByPupularityDESC,
+  sortOfferByRatingDESC,
+} from './utils';
+
 export enum AppRoute {
   Root = '/',
   Login = '/login',
@@ -30,3 +37,17 @@ export enum City {
   Hamburg = 'Hamburg',
   Dusseldorf = 'Dusseldorf',
 }
+
+export enum OffersOption {
+  popular = 'Popular',
+  priceAsc = 'Price: low to high',
+  priceDesc = 'Price: high to low',
+  topRated = 'Top rated first',
+}
+
+export const OffersSorter = {
+  [OffersOption.priceAsc]: sortOfferByPriceASC,
+  [OffersOption.priceDesc]: sortOfferByPriceDESC,
+  [OffersOption.popular]: sortOfferByPupularityDESC,
+  [OffersOption.topRated]: sortOfferByRatingDESC,
+};
