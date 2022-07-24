@@ -10,12 +10,12 @@ import {
 import { PrivateRoute } from '../private-route';
 import { IOffer } from '../../types/offer';
 
-interface IAppProps {
-  places: IOffer[];
-  favorites: IOffer[];
+type AppPropsType = {
+  places: IOffer[],
+  favorites: IOffer[],
 }
 
-export const App = ({ places, favorites }: IAppProps) => (
+export const App = ({ places, favorites }: AppPropsType) => (
   <BrowserRouter>
     <Routes>
       <Route path={AppRoute.Root} element={<MainPage places={places} />} />

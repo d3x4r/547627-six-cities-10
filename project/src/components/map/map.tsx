@@ -5,7 +5,7 @@ import { useMap } from '../../hooks/use-map';
 import { URL_MARKER_DEFAULT } from '../../const';
 import 'leaflet/dist/leaflet.css';
 
-interface IMapProps {
+type MapPropsType = {
   places: IOffer[],
 }
 
@@ -15,7 +15,7 @@ const defaultCustomIcon = new Icon({
   iconAnchor: [20, 40]
 });
 
-const Map = ({ places }: IMapProps) => {
+const Map = ({ places }: MapPropsType) => {
   const mapRef = useRef(null);
   const map = useMap(mapRef, places[0]);
 

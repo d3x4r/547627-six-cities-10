@@ -4,11 +4,11 @@ import { IOffer } from '../../types/offer';
 import { Map } from '../map';
 import { useAppSelector } from '../../hooks';
 
-interface ICitiesProps {
+type CitiesPropsType = {
   places: IOffer[],
 }
 
-const Cities = ({ places }: ICitiesProps) => {
+const Cities = ({ places }: CitiesPropsType) => {
   const { offers, selectedCity } = useAppSelector((state) => state);
 
   return (

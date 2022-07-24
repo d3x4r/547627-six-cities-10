@@ -1,33 +1,31 @@
 import { Dispatch } from 'react';
 import { Link } from 'react-router-dom';
-import { getRatingWidth } from './utils';
+import { getRatingWidth } from '../../utils';
 import { IOffer } from '../../types/offer';
+import { CardType } from './const';
 
-interface IPlaceCardProps {
-  place: IOffer;
-  isFavoriteCard?: boolean;
-  onSelect?: Dispatch<React.SetStateAction<number | null>>;
+type PlaceCardPropsTypes = {
+  place: IOffer,
+  onSelect?: Dispatch<React.SetStateAction<number | null>>,
+  cardType?: CardType,
 }
 
-const PlaceCard = ({ place: { id, name, type, price, priceText, img, rating }, isFavoriteCard = false, onSelect = () => ({}) }: IPlaceCardProps) => {
-  const imgWidth = isFavoriteCard ? 150 : 260;
-  const imgHeight = isFavoriteCard ? 110 : 200;
-  const cardClassName = isFavoriteCard ? 'favorites__card' : 'cities__card';
-  const infoClassName = isFavoriteCard ? 'favorites__card-info' : '';
-  const imgClassName = isFavoriteCard ? 'favorites__image-wrapper' : 'cities__image-wrapper';
+const PlaceCard = ({ place: { id, name, type, price, priceText, img, rating }, cardType = CardType.cities, onSelect = () => ({}) }: PlaceCardPropsTypes) => {
+  const imgWidth = cardType === CardType.favorite ? 150 : 260;
+  const imgHeight = cardType === CardType.favorite ? 110 : 200;
 
   return (
     <article
-      className={`${cardClassName} place-card`}
+      className={`${cardType}__card place-card`}
       onMouseEnter={() => onSelect(id)}
       onMouseLeave={() => onSelect(null)}
     >
-      <div className={`${imgClassName} place-card__image-wrapper`}>
+      <div className={`${cardType}__image-wrapper place-card__image-wrapper`}>
         <a href={img.href}>
           <img className="place-card__image" src={img.src} width={imgWidth} height={imgHeight} alt="Place image" />
         </a>
       </div>
-      <div className={`${infoClassName} place-card__info`}>
+      <div className={`${cardType === CardType.favorite ? `${cardType}__card-info` : ''} place-card__info`}>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{price}</b>
