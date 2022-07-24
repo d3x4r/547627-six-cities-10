@@ -1,40 +1,32 @@
-const Tabs = () => (
-  <div className="tabs">
-    <section className="locations container">
-      <ul className="locations__list tabs__list">
-        <li className="locations__item">
-          <a className="locations__item-link tabs__item" href="#">
-            <span>Paris</span>
-          </a>
-        </li>
-        <li className="locations__item">
-          <a className="locations__item-link tabs__item" href="#">
-            <span>Cologne</span>
-          </a>
-        </li>
-        <li className="locations__item">
-          <a className="locations__item-link tabs__item" href="#">
-            <span>Brussels</span>
-          </a>
-        </li>
-        <li className="locations__item">
-          <a className="locations__item-link tabs__item tabs__item--active">
-            <span>Amsterdam</span>
-          </a>
-        </li>
-        <li className="locations__item">
-          <a className="locations__item-link tabs__item" href="#">
-            <span>Hamburg</span>
-          </a>
-        </li>
-        <li className="locations__item">
-          <a className="locations__item-link tabs__item" href="#">
-            <span>Dusseldorf</span>
-          </a>
-        </li>
-      </ul>
-    </section>
-  </div>
-);
+import { City } from '../../const';
+import { useAppSelector, useAppDispatch } from '../../hooks';
+import { selectCity } from '../../store/action';
+
+const Tabs = () => {
+  const selectedCity = useAppSelector((state) => state.selectedCity);
+
+  const dispatch = useAppDispatch();
+  const onCitySelect = (city: City) => () => dispatch(selectCity(city));
+
+  return (
+    <div className="tabs">
+      <section className="locations container">
+        <ul className="locations__list tabs__list">
+          {Object.keys(City).map((name) => (
+            <li key={name} className="locations__item">
+              <a
+                className={`${selectedCity === name ? 'tabs__item--active' : ''} locations__item-link tabs__item}`}
+                href="#"
+                onClick={onCitySelect(name as City)}
+              >
+                <span>{name}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    </div>
+  );
+};
 
 export default Tabs;
