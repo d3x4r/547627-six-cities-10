@@ -17,3 +17,4 @@ export * from './map';
 export * from './reviews';
 export * from './review';
 export * from './places-options';
+export * from './spinner';

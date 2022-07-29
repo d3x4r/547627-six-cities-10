@@ -14,8 +14,8 @@ export function useMap(
     if (mapRef.current !== null && !isRenderedRef.current) {
       const instance = new Map(mapRef.current, {
         center: {
-          lat: offer.points.lat,
-          lng: offer.points.lng
+          lat: offer.location.latitude,
+          lng: offer.location.longitude
         },
         zoom: 10
       });

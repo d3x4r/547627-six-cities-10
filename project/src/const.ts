@@ -1,7 +1,6 @@
 import {
   sortOfferByPriceASC,
   sortOfferByPriceDESC,
-  sortOfferByPupularityDESC,
   sortOfferByRatingDESC,
 } from './utils';
 
@@ -50,6 +49,9 @@ export enum OffersOption {
 export const OffersSorter = {
   [OffersOption.priceAsc]: sortOfferByPriceASC,
   [OffersOption.priceDesc]: sortOfferByPriceDESC,
-  [OffersOption.popular]: sortOfferByPupularityDESC,
   [OffersOption.topRated]: sortOfferByRatingDESC,
 };
+
+export enum APIRoute {
+  Hotels = '/hotels',
+}
