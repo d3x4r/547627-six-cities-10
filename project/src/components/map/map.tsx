@@ -31,8 +31,8 @@ const Map = ({ places }: MapPropsType) => {
     if (map) {
       places.forEach((place) => {
         const marker = new Marker({
-          lat: place.points.lat,
-          lng: place.points.lng,
+          lat: place.location.latitude,
+          lng: place.location.longitude,
         });
 
         marker

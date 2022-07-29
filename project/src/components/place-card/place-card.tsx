@@ -9,7 +9,7 @@ type PlaceCardPropsTypes = {
   cardType?: CardType,
 }
 
-const PlaceCard = ({ place: { id, name, type, price, priceText, img, rating }, cardType = CardType.cities, onSelect = () => ({}) }: PlaceCardPropsTypes) => {
+const PlaceCard = ({ place: { id, city: { name }, type, price, previewImage, rating, title }, cardType = CardType.cities, onSelect = () => ({}) }: PlaceCardPropsTypes) => {
   const imgWidth = cardType === CardType.favorite ? 150 : 260;
   const imgHeight = cardType === CardType.favorite ? 110 : 200;
 
@@ -20,15 +20,15 @@ const PlaceCard = ({ place: { id, name, type, price, priceText, img, rating }, c
       onMouseLeave={() => onSelect(null)}
     >
       <div className={`${cardType}__image-wrapper place-card__image-wrapper`}>
-        <a href={img.href}>
-          <img className="place-card__image" src={img.src} width={imgWidth} height={imgHeight} alt="Place image" />
+        <a href="#">
+          <img className="place-card__image" src={previewImage} width={imgWidth} height={imgHeight} alt={title} />
         </a>
       </div>
       <div className={`${cardType === CardType.favorite ? `${cardType}__card-info` : ''} place-card__info`}>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{price}</b>
-            <span className="place-card__price-text">&#47;&nbsp;{priceText}</span>
+            <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
           <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
             <svg className="place-card__bookmark-icon" width="18" height="19">

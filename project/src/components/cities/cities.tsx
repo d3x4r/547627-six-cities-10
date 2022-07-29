@@ -5,22 +5,22 @@ import { useAppSelector } from '../../hooks';
 import { PlacesOptions } from '../places-options';
 
 const Cities = () => {
-  const { offers, selectedCity } = useAppSelector((state) => state);
+  const { filteredOffers, selectedCity } = useAppSelector((state) => state);
 
   return (
     <div className="cities">
-      {offers.length === 0 ? <CitiesEmpty name={selectedCity} /> :
+      {filteredOffers.length === 0 ? <CitiesEmpty name={selectedCity} /> :
         (
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{offers.length} places to stay in {selectedCity}</b>
+              <b className="places__found">{filteredOffers.length} places to stay in {selectedCity}</b>
               <PlacesOptions />
-              <PlacesList places={offers} />
+              <PlacesList places={filteredOffers} />
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
-                <Map places={offers} />
+                <Map places={filteredOffers} />
               </section>
             </div>
           </div>
