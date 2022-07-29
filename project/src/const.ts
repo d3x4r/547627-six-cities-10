@@ -54,4 +54,6 @@ export const OffersSorter = {
 
 export enum APIRoute {
   Hotels = '/hotels',
+  Login = '/login',
+  Logout = '/logout'
 }
