@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useAppSelector } from '../../hooks';
-import { AppRoute, AuthorizationStatus } from '../../const';
+import { AppRoute } from '../../const';
 import {
   MainPage,
   FavoritesPage,
@@ -29,7 +29,7 @@ export const App = ({ favorites }: AppPropsType) => {
         <Route path={AppRoute.Root} element={<MainPage />} />
         <Route path={AppRoute.Login} element={<LoginPage />} />
         <Route path={AppRoute.Offer} element={<RoomPage />} />
-        <Route path={AppRoute.Favorites} element={<PrivateRoute authorizationStatus={AuthorizationStatus.Auth}><FavoritesPage favorites={favorites} /></PrivateRoute>} />
+        <Route path={AppRoute.Favorites} element={<PrivateRoute><FavoritesPage favorites={favorites} /></PrivateRoute>} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
