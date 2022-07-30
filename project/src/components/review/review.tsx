@@ -1,8 +1,8 @@
-import { IReview } from '../../types/review';
+import { IComment } from '../../types/comment';
 import { getRatingWidth } from '../../utils';
 
 type ReviewPropsType = {
-  review: IReview,
+  review: IComment,
 }
 
 const Review = ({
@@ -10,14 +10,14 @@ const Review = ({
     user,
     date,
     rating,
-    text
+    comment
   },
 }: ReviewPropsType
 ) => (
   <li className="reviews__item">
     <div className="reviews__user user">
       <div className="reviews__avatar-wrapper user__avatar-wrapper">
-        <img className="reviews__avatar user__avatar" src={`${user.avatar}`} width="54" height="54" alt="Reviews avatar" />
+        <img className="reviews__avatar user__avatar" src={`${user.avatarUrl}`} width="54" height="54" alt="Reviews avatar" />
       </div>
       <span className="reviews__user-name">
         {user.name}
@@ -31,7 +31,7 @@ const Review = ({
         </div>
       </div>
       <p className="reviews__text">
-        {text}
+        {comment}
       </p>
       <time className="reviews__time" dateTime="2019-04-24">
         {date}
