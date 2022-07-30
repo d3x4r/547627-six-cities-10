@@ -1,7 +1,14 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { City, OffersOption } from '../const';
-import { selectCity, selectOfferOption, highlightCard, loadOffers, setDataLoadedStatus } from './action';
-import { OffersSorter } from '../const';
+import {
+  selectCity,
+  selectOfferOption,
+  highlightCard,
+  loadOffers,
+  setDataLoadedStatus,
+  setAuthorizationStatus,
+} from './action';
+import { OffersSorter, AuthorizationStatus } from '../const';
 import { IOffer } from '../types/offer';
 
 const DEFAULT_CITY = City.Paris;
@@ -14,6 +21,7 @@ type InitialState = {
   selectedOfferOption: OffersOption,
   highlightedOffer: IOffer['id'] | null;
   isDataLoaded: boolean;
+  authorizationStatus: AuthorizationStatus
 }
 
 const initialState: InitialState = {
@@ -23,6 +31,7 @@ const initialState: InitialState = {
   selectedOfferOption: DEFAULT_OFFER_OPTION,
   highlightedOffer: null,
   isDataLoaded: false,
+  authorizationStatus: AuthorizationStatus.Unknown,
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -49,6 +58,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setDataLoadedStatus, (state, action) => {
       state.isDataLoaded = action.payload;
+    })
+    .addCase(setAuthorizationStatus, (state, action) => {
+      state.authorizationStatus = action.payload;
     });
 });
 
