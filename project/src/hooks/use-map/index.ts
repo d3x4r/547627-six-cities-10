@@ -17,7 +17,7 @@ export function useMap(
           lat: offer.location.latitude,
           lng: offer.location.longitude
         },
-        zoom: 10
+        zoom: offer.city.location.zoom
       });
 
       const layer = new TileLayer(urlTemplate, { attribution: attribution });
