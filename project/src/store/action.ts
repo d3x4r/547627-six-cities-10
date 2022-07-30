@@ -8,3 +8,4 @@ export const highlightCard = createAction<IOffer['id'] | null>('offers/hightligh
 export const loadOffers = createAction<IOffer[]>('data/loadOffers');
 export const setDataLoadedStatus = createAction<boolean>('data/setDataLoadedStatus');
 export const setAuthorizationStatus = createAction<AuthorizationStatus>('user/setAuthorizationStatus');
+export const redirectToRoute = createAction<AppRoute>('data/redirectToRoute');
