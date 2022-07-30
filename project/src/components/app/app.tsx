@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { useAppSelector } from '../../hooks';
 import { AppRoute } from '../../const';
 import {
@@ -11,20 +11,22 @@ import {
 import { PrivateRoute } from '../private-route';
 import { IOffer } from '../../types/offer';
 import { Spinner } from '../spinner';
+import { HistoryRoute } from '../history-route';
+import browserHistory from '../../browser-history';
 
 type AppPropsType = {
   favorites: IOffer[],
 }
 
 export const App = ({ favorites }: AppPropsType) => {
-  const isDataLoaded = useAppSelector((state) => state.isDataLoaded);
+  const isDataLoaded = useAppSelector((state) => state.loadedState.isOffersLoaded);
 
   if (isDataLoaded) {
     return <Spinner />;
   }
 
   return (
-    <BrowserRouter>
+    <HistoryRoute history={browserHistory}>
       <Routes>
         <Route path={AppRoute.Root} element={<MainPage />} />
         <Route path={AppRoute.Login} element={<LoginPage />} />
@@ -32,7 +34,7 @@ export const App = ({ favorites }: AppPropsType) => {
         <Route path={AppRoute.Favorites} element={<PrivateRoute><FavoritesPage favorites={favorites} /></PrivateRoute>} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-    </BrowserRouter>
+    </HistoryRoute>
   );
 };
 
