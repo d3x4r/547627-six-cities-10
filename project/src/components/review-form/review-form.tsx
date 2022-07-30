@@ -1,10 +1,17 @@
 import { useState } from 'react';
 import { Rating } from '../../const';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { createComment } from '../../store/api-actions';
 import { ReviewFormType } from './types';
 
-const ReviewForm = () => {
+type ReviewFormPropsType = {
+  offerId: number;
+}
+const ReviewForm = ({ offerId }: ReviewFormPropsType) => {
+  const dispatch = useAppDispatch();
+  const { isReviewFormSubmited } = useAppSelector((state) => state.loadedState);
   const [formState, setFormState] = useState<ReviewFormType>({
-    review: '',
+    comment: '',
     rating: null,
   });
 
@@ -13,9 +20,18 @@ const ReviewForm = () => {
   };
 
   const onFormSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
+    const { comment, rating } = formState;
     evt.preventDefault();
-    setFormState({ review: '', rating: null });
+    dispatch(createComment({ hotelId: offerId, commentBody: { comment, rating: Number(rating) } }));
+    setFormState({ comment: '', rating: null });
   };
+
+  const commentLength = formState.comment.length;
+
+  const isFormDisabled = commentLength < 50
+    || commentLength > 300
+    || commentLength === 0
+    || formState.rating === null;
 
   return (
     <form
@@ -33,6 +49,7 @@ const ReviewForm = () => {
           type="radio"
           checked={formState.rating === Rating.Perfect}
           onChange={onFormChange}
+          disabled={isReviewFormSubmited}
         />
         <label htmlFor="5-stars" className="reviews__rating-label form__rating-label" title="perfect">
           <svg className="form__star-image" width="37" height="33">
@@ -48,6 +65,7 @@ const ReviewForm = () => {
           type="radio"
           checked={formState.rating === Rating.Good}
           onChange={onFormChange}
+          disabled={isReviewFormSubmited}
         />
         <label htmlFor="4-stars" className="reviews__rating-label form__rating-label" title="good">
           <svg className="form__star-image" width="37" height="33">
@@ -63,6 +81,7 @@ const ReviewForm = () => {
           type="radio"
           checked={formState.rating === Rating.NotBad}
           onChange={onFormChange}
+          disabled={isReviewFormSubmited}
         />
         <label htmlFor="3-stars" className="reviews__rating-label form__rating-label" title="not bad">
           <svg className="form__star-image" width="37" height="33">
@@ -78,6 +97,7 @@ const ReviewForm = () => {
           type="radio"
           checked={formState.rating === Rating.Badly}
           onChange={onFormChange}
+          disabled={isReviewFormSubmited}
         />
         <label htmlFor="2-stars" className="reviews__rating-label form__rating-label" title="badly">
           <svg className="form__star-image" width="37" height="33">
@@ -93,6 +113,7 @@ const ReviewForm = () => {
           type="radio"
           checked={formState.rating === Rating.Terribly}
           onChange={onFormChange}
+          disabled={isReviewFormSubmited}
         />
         <label htmlFor="1-star" className="reviews__rating-label form__rating-label" title="terribly">
           <svg className="form__star-image" width="37" height="33">
@@ -103,16 +124,23 @@ const ReviewForm = () => {
       <textarea
         className="reviews__textarea form__textarea"
         id="review"
-        name="review"
+        name="comment"
         placeholder="Tell how was your stay, what you like and what can be improved"
-        value={formState.review}
+        value={formState.comment}
         onChange={onFormChange}
+        disabled={isReviewFormSubmited}
       />
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
         </p>
-        <button className="reviews__submit form__submit button" type="submit" disabled={formState.review.length === 0}>Submit</button>
+        <button
+          className="reviews__submit form__submit button"
+          type="submit"
+          disabled={isFormDisabled || isReviewFormSubmited}
+        >
+          Submit
+        </button>
       </div>
     </form>
   );
