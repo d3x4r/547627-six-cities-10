@@ -3,10 +3,12 @@ import { Rating } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { createComment } from '../../store/api-actions';
 import { ReviewFormType } from './types';
+import { CommentLenght } from './const';
 
 type ReviewFormPropsType = {
   offerId: number;
 }
+
 const ReviewForm = ({ offerId }: ReviewFormPropsType) => {
   const dispatch = useAppDispatch();
   const { isReviewFormSubmited } = useAppSelector((state) => state.loadedState);
@@ -26,11 +28,11 @@ const ReviewForm = ({ offerId }: ReviewFormPropsType) => {
     setFormState({ comment: '', rating: null });
   };
 
-  const commentLength = formState.comment.length;
+  const currentCommentLength = formState.comment.length;
 
-  const isFormDisabled = commentLength < 50
-    || commentLength > 300
-    || commentLength === 0
+  const isFormDisabled = currentCommentLength < CommentLenght.min
+    || currentCommentLength > CommentLenght.max
+    || currentCommentLength === 0
     || formState.rating === null;
 
   return (
