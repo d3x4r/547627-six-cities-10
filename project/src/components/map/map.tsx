@@ -8,6 +8,7 @@ import { useAppSelector } from '../../hooks';
 
 type MapPropsType = {
   places: IOffer[],
+  currentPlace?: IOffer,
 }
 
 const defaultCustomIcon = new Icon({
@@ -22,7 +23,7 @@ const selectedCustomIcon = new Icon({
   iconAnchor: [20, 40]
 });
 
-const Map = ({ places }: MapPropsType) => {
+const Map = ({ places, currentPlace }: MapPropsType) => {
   const mapRef = useRef(null);
   const map = useMap(mapRef, places[0]);
   const highlightedOffer = useAppSelector((state) => state.highlightedOffer);
@@ -40,8 +41,19 @@ const Map = ({ places }: MapPropsType) => {
           .addTo(map);
 
       });
+
+      if (currentPlace) {
+        const marker = new Marker({
+          lat: currentPlace.location.latitude,
+          lng: currentPlace.location.longitude,
+        });
+
+        marker
+          .setIcon(selectedCustomIcon)
+          .addTo(map);
+      }
     }
-  }, [map, places, highlightedOffer]);
+  }, [map, places, highlightedOffer, currentPlace]);
 
   return <div style={{ height: '100%' }} ref={mapRef}></div>;
 };
