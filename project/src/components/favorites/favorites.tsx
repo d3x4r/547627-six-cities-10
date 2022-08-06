@@ -1,5 +1,4 @@
-import { FavoriteItem } from '../../components';
-
+import { FavoriteItem } from '../../components/';
 import { IOffer } from '../../types/offer';
 
 type FavoritesPropsType = {
@@ -8,7 +7,7 @@ type FavoritesPropsType = {
 
 const Favorites = ({ favorites }: FavoritesPropsType) => {
   const groupedFavorites = favorites.reduce((acc, place) => {
-    acc.set(place.city, [...acc.get(place.city) || [], place]);
+    acc.set(place.city.name, [...acc.get(place.city.name) || [], place]);
     return acc;
   }, new Map<string, IOffer[]>());
   return (
