@@ -1,9 +1,10 @@
 import { City } from '../../const';
 import { useAppSelector, useAppDispatch } from '../../hooks';
-import { selectCity } from '../../store/action';
+import { selectCity } from '../../store/offers-process/offers-process';
+import { getSelectedCity } from '../../store/offers-process/selectors';
 
 const Tabs = () => {
-  const selectedCity = useAppSelector((state) => state.selectedCity);
+  const selectedCity = useAppSelector(getSelectedCity);
 
   const dispatch = useAppDispatch();
   const onCitySelect = (city: City) => () => dispatch(selectCity(city));

@@ -13,13 +13,14 @@ import { IOffer } from '../../types/offer';
 import { Spinner } from '../spinner';
 import { HistoryRoute } from '../history-route';
 import browserHistory from '../../browser-history';
+import { getOffersLoadedState } from '../../store/offers-data/selectors';
 
 type AppPropsType = {
   favorites: IOffer[],
 }
 
 export const App = ({ favorites }: AppPropsType) => {
-  const isDataLoaded = useAppSelector((state) => state.loadedState.isOffersLoaded);
+  const isDataLoaded = useAppSelector(getOffersLoadedState);
 
   if (isDataLoaded) {
     return <Spinner />;

@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { createComment } from '../../store/api-actions';
 import { ReviewFormType } from './types';
 import { CommentLenght } from './const';
+import { getReviewFormLoadedState } from '../../store/offers-data/selectors';
 
 type ReviewFormPropsType = {
   offerId: number;
@@ -11,7 +12,7 @@ type ReviewFormPropsType = {
 
 const ReviewForm = ({ offerId }: ReviewFormPropsType) => {
   const dispatch = useAppDispatch();
-  const { isReviewFormSubmited } = useAppSelector((state) => state.loadedState);
+  const isReviewFormSubmited = useAppSelector(getReviewFormLoadedState);
   const [formState, setFormState] = useState<ReviewFormType>({
     comment: '',
     rating: null,

@@ -1,7 +1,7 @@
 import { PlaceCard } from '../place-card';
 import { IOffer } from '../../types/offer';
 import { useAppDispatch } from '../../hooks';
-import { highlightCard } from '../../store/action';
+import { highlightCard } from '../../store/offers-process/offers-process';
 
 type PlacesListPropsTypes = {
   places: IOffer[],

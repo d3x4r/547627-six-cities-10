@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { App, ErrorMessage } from './components/';
+import { App } from './components';
 import { favorites } from './mocks/favorites';
 import { store } from './store';
-import { fetchOffersAction, checkAuthAction } from './store/api-actions';
+import { checkAuthAction, fetchOffersAction } from './store/api-actions';
+import { ToastContainer } from 'react-toastify';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -17,7 +18,7 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <App favorites={favorites} />
-      <ErrorMessage />
+      <ToastContainer />
     </Provider>
   </React.StrictMode>,
 );

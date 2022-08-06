@@ -18,5 +18,4 @@ export * from './reviews';
 export * from './review';
 export * from './places-options';
 export * from './spinner';
-export * from './error-message';
 export * from './history-route';
