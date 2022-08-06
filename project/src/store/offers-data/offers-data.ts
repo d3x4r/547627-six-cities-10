@@ -7,6 +7,8 @@ import {
   loadNearPlacesAction,
   createComment,
   fetchOffersAction,
+  loadFavoritesOffersAction,
+  createFavoriteOffer,
 } from '../api-actions';
 
 const initialState: OffersData = {
@@ -14,6 +16,7 @@ const initialState: OffersData = {
   allOffers: [],
   comments: null,
   nearPlaces: null,
+  favorites: [],
   loadedState: {
     isOffersLoaded: false,
     isCurrentOfferLoaded: false,
@@ -53,6 +56,21 @@ export const offersData = createSlice({
       .addCase(createComment.fulfilled, (state, action) => {
         state.comments = action.payload;
         state.loadedState.isReviewFormSubmited = false;
+      })
+      .addCase(loadFavoritesOffersAction.pending, (state) => {
+        state.loadedState.isOffersLoaded = true;
+      })
+      .addCase(loadFavoritesOffersAction.fulfilled, (state, action) => {
+        state.favorites = action.payload;
+        state.loadedState.isOffersLoaded = false;
+      })
+      .addCase(createFavoriteOffer.fulfilled, (state, action) => {
+        if (action.payload.isFavorite === false) {
+          state.favorites = state.favorites.filter(({ id }) => id !== action.payload.id);
+        } else {
+          state.favorites = [...state.favorites, action.payload];
+        }
+        state.allOffers = state.allOffers.map((offer) => offer.id === action.payload.id ? { ...offer, isFavorite: action.payload.isFavorite } : offer);
       });
   }
 });

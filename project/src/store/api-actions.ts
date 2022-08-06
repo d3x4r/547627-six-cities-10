@@ -7,7 +7,8 @@ import { UserData } from '../types/user-data';
 import { CommentData } from '../types/comment-data';
 import { APIRoute } from '../const';
 import { saveToken, dropToken } from '../services/token';
-import { IComment } from '../types/comment.js';
+import { IComment } from '../types/comment';
+import { FavoriteOfferData } from '../types/favorite-offer-data';
 
 export const fetchOffersAction = createAsyncThunk<IOffer[], undefined, {
   dispatch: AppDispatch,
@@ -104,4 +105,26 @@ export const createComment = createAsyncThunk<IComment[], CommentData, {
   },
 );
 
+export const loadFavoritesOffersAction = createAsyncThunk<IOffer[], undefined, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'data/fetchFavoritesOffers',
+  async (_arg, { extra: api }) => {
+    const { data } = await api.get<IOffer[]>(`${APIRoute.Favorites}`);
+    return data;
+  },
+);
 
+export const createFavoriteOffer = createAsyncThunk<IOffer, FavoriteOfferData, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'data/createFavoriteItem',
+  async ({ status, hotelId }, { dispatch, extra: api }) => {
+    const { data } = await api.post<IOffer>(`${APIRoute.Favorites}/${hotelId}/${status}`);
+    return data;
+  },
+);
