@@ -4,9 +4,12 @@ import { AuthorizationStatus, AppRoute } from '../../const';
 import { useAppDispatch } from '../../hooks';
 import { logoutAction } from '../../store/api-actions';
 import { getAuthorizationStatus } from '../../store/user-process/selectors';
+import { getFavoritesOffers } from '../../store/offers-data/selectors';
+
 
 const Navigation = () => {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const favoritesItems = useAppSelector(getFavoritesOffers);
   const dispatch = useAppDispatch();
 
   const onLogoutClick = () => {
@@ -23,7 +26,7 @@ const Navigation = () => {
                 <div className="header__avatar-wrapper user__avatar-wrapper">
                 </div>
                 <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-                <span className="header__favorite-count">3</span>
+                <span className="header__favorite-count">{favoritesItems.length}</span>
               </Link>
             </li>
             <li className="header__nav-item">

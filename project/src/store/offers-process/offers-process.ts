@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-// import { isAnswerCorrect } from '../../game';
 import { NameSpace, City, OffersOption } from '../../const';
 import { OffersProcess } from '../../types/state';
 

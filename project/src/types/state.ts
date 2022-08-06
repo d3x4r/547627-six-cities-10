@@ -16,6 +16,7 @@ export type OffersData = {
   allOffers: IOffer[],
   comments: IComment[] | null,
   nearPlaces: IOffer[] | null,
+  favorites: IOffer[] | [],
   loadedState: {
     isOffersLoaded: boolean,
     isCurrentOfferLoaded: boolean,

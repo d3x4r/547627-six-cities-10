@@ -13,6 +13,7 @@ export const getCurrentOfferLoadedState = (state: State): boolean => state[NameS
 export const getNearPlaces = (state: State): IOffer[] | null => state[NameSpace.Data].nearPlaces;
 export const getComments = (state: State): IComment[] | null => state[NameSpace.Data].comments;
 export const getReviewFormLoadedState = (state: State): boolean => state[NameSpace.Data].loadedState.isReviewFormSubmited;
+export const getFavoritesOffers = (state: State): IOffer[] | [] => state[NameSpace.Data].favorites;
 export const getFilteredOffers = createSelector(
   [getOffers, getSelectedCity, getOfferOption],
   (offers, selectedCity, sortOption) => {

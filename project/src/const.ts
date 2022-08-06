@@ -58,6 +58,7 @@ export enum APIRoute {
   Login = '/login',
   Logout = '/logout',
   Comments = '/comments',
+  Favorites = '/favorite',
 }
 
 export const TIMEOUT_SHOW_ERROR = 2000;
@@ -66,4 +67,9 @@ export enum NameSpace {
   Data = 'DATA',
   Offers = 'OFFERS',
   User = 'USER',
+}
+
+export enum FavoriteOfferStatus {
+  Favorite = 1,
+  NotFavorite = 0,
 }
