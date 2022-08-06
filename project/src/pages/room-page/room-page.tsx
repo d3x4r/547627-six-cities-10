@@ -5,13 +5,17 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { loadOfferAction, loadNearPlacesAction } from '../../store/api-actions';
 import { getRatingWidth } from '../../utils';
 import { Map } from '../../components';
+import { getCurrentOffer, getCurrentOfferLoadedState, getNearPlaces } from '../../store/offers-data/selectors';
 
 const IMAGES_MAX_COUNT = 6;
 
 const RoomPage = () => {
   const { id } = useParams();
   const dispatch = useAppDispatch();
-  const { currentOffer, nearPlaces, loadedState: { isCurrentOfferLoaded } } = useAppSelector((state) => state);
+  const currentOffer = useAppSelector(getCurrentOffer);
+  const isCurrentOfferLoaded = useAppSelector(getCurrentOfferLoadedState);
+  const nearPlaces = useAppSelector(getNearPlaces);
+
   useEffect(() => {
     if (id) {
       dispatch(loadOfferAction(id));

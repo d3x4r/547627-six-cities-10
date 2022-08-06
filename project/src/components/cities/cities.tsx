@@ -1,11 +1,14 @@
-import { PlacesList } from '..';
+import { PlacesList } from '../places-list';
 import { CitiesEmpty } from '../cities-empty';
 import { Map } from '../map';
 import { useAppSelector } from '../../hooks';
 import { PlacesOptions } from '../places-options';
+import { getSelectedCity } from '../../store/offers-process/selectors';
+import { getFilteredOffers } from '../../store/offers-data/selectors';
 
 const Cities = () => {
-  const { filteredOffers, selectedCity } = useAppSelector((state) => state);
+  const selectedCity = useAppSelector(getSelectedCity);
+  const filteredOffers = useAppSelector(getFilteredOffers);
 
   return (
     <div className="cities">

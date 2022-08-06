@@ -1,5 +1,4 @@
-import { Cities } from '../../components';
-import { Header, Tabs } from '../../components';
+import { Cities, Header, Tabs } from '../../components';
 
 const MainPage = () => (
   <div className="page page--gray page--main">

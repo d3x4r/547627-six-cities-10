@@ -5,6 +5,7 @@ import { useMap } from '../../hooks/use-map';
 import { MarkerIcon } from '../../const';
 import 'leaflet/dist/leaflet.css';
 import { useAppSelector } from '../../hooks';
+import { getHighlightedOffer } from '../../store/offers-process/selectors';
 
 type MapPropsType = {
   places: IOffer[],
@@ -26,7 +27,7 @@ const selectedCustomIcon = new Icon({
 const Map = ({ places, currentPlace }: MapPropsType) => {
   const mapRef = useRef(null);
   const map = useMap(mapRef, places[0]);
-  const highlightedOffer = useAppSelector((state) => state.highlightedOffer);
+  const highlightedOffer = useAppSelector(getHighlightedOffer);
 
   useEffect(() => {
     if (map) {

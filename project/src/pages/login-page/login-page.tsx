@@ -2,9 +2,11 @@ import { Header, LoginForm, LocationsItem } from '../../components';
 import { Navigate } from 'react-router-dom';
 import { useAppSelector } from '../../hooks';
 import { AuthorizationStatus, AppRoute } from '../../const';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
+
 
 const LoginPage = () => {
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   if (authorizationStatus === AuthorizationStatus.Auth) {
     return <Navigate to={AppRoute.Root} />;

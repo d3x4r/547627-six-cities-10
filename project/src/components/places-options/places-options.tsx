@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { OffersOption } from '../../const';
-import { selectOfferOption } from '../../store/action';
+import { selectOfferOption } from '../../store/offers-process/offers-process';
+import { getOfferOption } from '../../store/offers-process/selectors';
 
 const PlacesOptions = () => {
   const [optionsVisible, setOptionsVisible] = useState<boolean>(false);
-  const selectedOption = useAppSelector((state) => state.selectedOfferOption);
+  const selectedOption = useAppSelector(getOfferOption);
   const dispatch = useAppDispatch();
 
   const onOptionsVisibleChange = () => {

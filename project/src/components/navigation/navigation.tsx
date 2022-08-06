@@ -3,9 +3,10 @@ import { useAppSelector } from '../../hooks';
 import { AuthorizationStatus, AppRoute } from '../../const';
 import { useAppDispatch } from '../../hooks';
 import { logoutAction } from '../../store/api-actions';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
 
 const Navigation = () => {
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const dispatch = useAppDispatch();
 
   const onLogoutClick = () => {

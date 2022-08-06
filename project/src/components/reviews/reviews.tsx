@@ -4,6 +4,9 @@ import { ReviewForm } from '../review-form';
 import { loadCommentsAction } from '../../store/api-actions';
 import { Review } from '../review';
 import { AuthorizationStatus} from '../../const';
+import { getComments, getCurrentOffer } from '../../store/offers-data/selectors';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
+
 
 type ReviewsPropsType = {
   offerId: number;
@@ -12,7 +15,10 @@ type ReviewsPropsType = {
 const MAX_REVIEWS_PER_PAGE = 10;
 
 const Reviews = ({ offerId }: ReviewsPropsType) => {
-  const { comments, currentOffer, authorizationStatus } = useAppSelector((state) => state);
+  const comments = useAppSelector(getComments);
+  const currentOffer = useAppSelector(getCurrentOffer);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(loadCommentsAction(offerId));
