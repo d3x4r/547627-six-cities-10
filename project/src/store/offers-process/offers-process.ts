@@ -5,7 +5,7 @@ import { OffersProcess } from '../../types/state';
 const DEFAULT_CITY = City.Paris;
 const DEFAULT_OFFER_OPTION = OffersOption.popular;
 
-const initialState: OffersProcess = {
+export const initialState: OffersProcess = {
   selectedCity: DEFAULT_CITY,
   highlightedOffer: null,
   selectedOfferOption: DEFAULT_OFFER_OPTION,
