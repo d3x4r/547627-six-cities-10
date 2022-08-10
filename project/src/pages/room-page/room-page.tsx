@@ -65,7 +65,7 @@ const RoomPage = () => {
                 </div>
               )}
               <div className="property__name-wrapper">
-                <h1 className="property__name">
+                <h1 className="property__name" data-testid="room-page-title">
                   {currentOffer.title}
                 </h1>
                 <button className="property__bookmark-button button" type="button">
