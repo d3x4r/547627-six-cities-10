@@ -17,7 +17,7 @@ const Cities = () => {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{filteredOffers.length} places to stay in {selectedCity}</b>
+              <b className="places__found" data-testid={selectedCity}>{filteredOffers.length} places to stay in {selectedCity}</b>
               <PlacesOptions />
               <PlacesList places={filteredOffers} />
             </section>

@@ -11,7 +11,7 @@ import {
   createFavoriteOffer,
 } from '../api-actions';
 
-const initialState: OffersData = {
+export const initialState: OffersData = {
   currentOffer: null,
   allOffers: [],
   comments: null,
