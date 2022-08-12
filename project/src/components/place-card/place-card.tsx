@@ -14,7 +14,7 @@ type PlaceCardPropsTypes = {
   cardType?: CardType,
 }
 
-const PlaceCard = ({ place: { id, city: { name }, type, price, previewImage, rating, title, isFavorite }, cardType = CardType.cities, onSelect = () => ({}) }: PlaceCardPropsTypes) => {
+const PlaceCard = ({ place: { id, city: { name }, type, price, previewImage, rating, title, isFavorite, isPremium }, cardType = CardType.cities, onSelect = () => ({}) }: PlaceCardPropsTypes) => {
   const imgWidth = cardType === CardType.favorite ? 150 : 260;
   const imgHeight = cardType === CardType.favorite ? 110 : 200;
   const dispatch = useAppDispatch();
@@ -35,6 +35,13 @@ const PlaceCard = ({ place: { id, city: { name }, type, price, previewImage, rat
       onMouseEnter={() => onSelect(id)}
       onMouseLeave={() => onSelect(null)}
     >
+      {
+        isPremium && (
+          <div className="place-card__mark">
+            <span>Premium</span>
+          </div>
+        )
+      }
       <div className={`${cardType}__image-wrapper place-card__image-wrapper`}>
         <a href="#">
           <img className="place-card__image" src={previewImage} width={imgWidth} height={imgHeight} alt={title} />
