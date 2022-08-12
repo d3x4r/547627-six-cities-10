@@ -7,6 +7,7 @@ import { checkAuthAction, fetchOffersAction, loadFavoritesOffersAction } from '.
 import { ToastContainer } from 'react-toastify';
 import HistoryRouter from '../src/components/history-route/history-route';
 import browserHistory from './browser-history';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
