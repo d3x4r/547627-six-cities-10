@@ -2,9 +2,11 @@ import { Link } from 'react-router-dom';
 import { getRatingWidth } from '../../utils';
 import { IOffer } from '../../types/offer';
 import { CardType } from './const';
-import { useAppDispatch } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { createFavoriteOffer } from '../../store/api-actions';
-import { FavoriteOfferStatus } from '../../const';
+import { AppRoute, AuthorizationStatus, FavoriteOfferStatus } from '../../const';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
+import { useNavigate } from 'react-router-dom';
 
 type PlaceCardPropsTypes = {
   place: IOffer,
@@ -16,8 +18,16 @@ const PlaceCard = ({ place: { id, city: { name }, type, price, previewImage, rat
   const imgWidth = cardType === CardType.favorite ? 150 : 260;
   const imgHeight = cardType === CardType.favorite ? 110 : 200;
   const dispatch = useAppDispatch();
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const navigate = useNavigate();
 
-  const onAddOfferToFavorite = () => dispatch(createFavoriteOffer({ hotelId: id, status: isFavorite ? FavoriteOfferStatus.NotFavorite : FavoriteOfferStatus.Favorite }));
+  const onAddOfferToFavorite = () => {
+    if (authorizationStatus === AuthorizationStatus.NoAuth || authorizationStatus === AuthorizationStatus.Unknown) {
+      navigate(AppRoute.Login);
+    } else {
+      dispatch(createFavoriteOffer({ hotelId: id, status: isFavorite ? FavoriteOfferStatus.NotFavorite : FavoriteOfferStatus.Favorite }));
+    }
+  };
 
   return (
     <article
