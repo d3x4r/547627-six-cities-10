@@ -1,5 +1,6 @@
 import { IComment } from '../../types/comment';
 import { getRatingWidth } from '../../utils';
+import { reviewDateOptions } from './const';
 
 type ReviewPropsType = {
   review: IComment,
@@ -34,7 +35,7 @@ const Review = ({
         {comment}
       </p>
       <time className="reviews__time" dateTime="2019-04-24">
-        {new Date(date).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+        {new Date(date).toLocaleDateString('en-US', reviewDateOptions)}
       </time>
     </div>
   </li>
