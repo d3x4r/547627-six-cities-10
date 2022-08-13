@@ -41,7 +41,7 @@ const RoomPage = () => {
     return <h1>No offer loaded</h1>;
   }
 
-  const onAddOfferToFavorite = () => {
+  const handleButtonClick = () => {
     if (authorizationStatus === AuthorizationStatus.NoAuth || authorizationStatus === AuthorizationStatus.Unknown) {
       navigate(AppRoute.Login);
     } else {
@@ -83,7 +83,7 @@ const RoomPage = () => {
                 </h1>
                 <button
                   className="property__bookmark-button property__bookmark-button--active button"
-                  onClick={onAddOfferToFavorite}
+                  onClick={handleButtonClick}
                   type="button"
                 >
                   <svg

@@ -12,7 +12,8 @@ const Navigation = () => {
   const favoritesItems = useAppSelector(getFavoritesOffers);
   const dispatch = useAppDispatch();
 
-  const onLogoutClick = () => {
+  const handleLinkClick = (evt: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    evt.preventDefault();
     dispatch(logoutAction());
   };
 
@@ -30,7 +31,7 @@ const Navigation = () => {
               </Link>
             </li>
             <li className="header__nav-item">
-              <a className="header__nav-link" onClick={onLogoutClick}>
+              <a className="header__nav-link" onClick={handleLinkClick}>
                 <span className="header__signout">Sign out</span>
               </a>
             </li>

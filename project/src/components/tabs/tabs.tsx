@@ -7,7 +7,10 @@ const Tabs = () => {
   const selectedCity = useAppSelector(getSelectedCity);
 
   const dispatch = useAppDispatch();
-  const onCitySelect = (city: City) => () => dispatch(selectCity(city));
+  const handleLinkClick = (city: City) => (evt: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    evt.preventDefault();
+    dispatch(selectCity(city));
+  };
 
   return (
     <div className="tabs">
@@ -18,7 +21,7 @@ const Tabs = () => {
               <a
                 className={`${selectedCity === name ? 'tabs__item--active' : ''} locations__item-link tabs__item}`}
                 href="#"
-                onClick={onCitySelect(name as City)}
+                onClick={handleLinkClick(name as City)}
               >
                 <span>{name}</span>
               </a>

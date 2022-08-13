@@ -21,7 +21,7 @@ const PlaceCard = ({ place: { id, city: { name }, type, price, previewImage, rat
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const navigate = useNavigate();
 
-  const onAddOfferToFavorite = () => {
+  const handleButtonClick = () => {
     if (authorizationStatus === AuthorizationStatus.NoAuth || authorizationStatus === AuthorizationStatus.Unknown) {
       navigate(AppRoute.Login);
     } else {
@@ -56,7 +56,7 @@ const PlaceCard = ({ place: { id, city: { name }, type, price, previewImage, rat
           <button
             className={`place-card__bookmark-button place-card__bookmark-button${isFavorite ? '--active' : ''} button`}
             type="button"
-            onClick={onAddOfferToFavorite}
+            onClick={handleButtonClick}
           >
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>

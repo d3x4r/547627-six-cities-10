@@ -9,16 +9,16 @@ const PlacesOptions = () => {
   const selectedOption = useAppSelector(getOfferOption);
   const dispatch = useAppDispatch();
 
-  const onOptionsVisibleChange = () => {
+  const handleFormSubmit = () => {
     setOptionsVisible((prev) => !prev);
   };
 
-  const onOptionChange = (option: OffersOption) => {
+  const handleItemClick = (option: OffersOption) => {
     dispatch(selectOfferOption(option));
   };
 
   return (
-    <form className="places__sorting" onClick={onOptionsVisibleChange}>
+    <form className="places__sorting" onClick={handleFormSubmit}>
       <span className="places__sorting-caption">Sort by</span>
       <span className="places__sorting-type" tabIndex={0}>
         {selectedOption}
@@ -34,7 +34,7 @@ const PlacesOptions = () => {
             key={option}
             className={`${OffersOption[option] === selectedOption ? 'places__option--active' : ''} places__option`}
             tabIndex={0}
-            onClick={() => onOptionChange(OffersOption[option])}
+            onClick={() => handleItemClick(OffersOption[option])}
           >
             {OffersOption[option]}
           </li>
