@@ -1,15 +1,20 @@
+import { useEffect } from 'react';
 import { PlacesList } from '../places-list';
 import { CitiesEmpty } from '../cities-empty';
 import { Map } from '../map';
-import { useAppSelector } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { PlacesOptions } from '../places-options';
 import { getSelectedCity } from '../../store/offers-process/selectors';
 import { getFilteredOffers } from '../../store/offers-data/selectors';
+import { highlightCard } from '../../store/offers-process/offers-process';
 
 const Cities = () => {
   const selectedCity = useAppSelector(getSelectedCity);
   const filteredOffers = useAppSelector(getFilteredOffers);
-
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(highlightCard(null));
+  }, [selectedCity, dispatch]);
   return (
     <div className="cities">
       {filteredOffers.length === 0 ? <CitiesEmpty name={selectedCity} /> :

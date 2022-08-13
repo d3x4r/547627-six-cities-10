@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { Review } from '.';
 import { Rating } from '../../const';
 import { IComment } from '../../types/comment';
+import { reviewDateOptions } from './const';
 
 describe('Review test', () => {
   it('should render "Review" with name prop', async () => {
@@ -20,7 +21,7 @@ describe('Review test', () => {
 
     render(<Review review={testComment} />);
     expect(screen.getByText(testComment.user.name)).toBeInTheDocument();
-    expect(screen.getByText(testComment.date)).toBeInTheDocument();
+    expect(screen.getByText(new Date(testComment.date).toLocaleDateString('en-US', reviewDateOptions))).toBeInTheDocument();
     expect(screen.getByText(testComment.comment)).toBeInTheDocument();
   });
 });

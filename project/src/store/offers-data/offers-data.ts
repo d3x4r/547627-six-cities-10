@@ -65,6 +65,9 @@ export const offersData = createSlice({
         state.loadedState.isOffersLoaded = false;
       })
       .addCase(createFavoriteOffer.fulfilled, (state, action) => {
+        if (state.currentOffer?.id === action.payload.id) {
+          state.currentOffer.isFavorite = action.payload.isFavorite;
+        }
         if (action.payload.isFavorite === false) {
           state.favorites = state.favorites.filter(({ id }) => id !== action.payload.id);
         } else {

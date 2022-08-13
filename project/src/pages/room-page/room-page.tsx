@@ -1,11 +1,14 @@
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Header, NearPlaces, Reviews, Spinner } from '../../components';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { loadOfferAction, loadNearPlacesAction } from '../../store/api-actions';
 import { getRatingWidth } from '../../utils';
 import { Map } from '../../components';
 import { getCurrentOffer, getCurrentOfferLoadedState, getNearPlaces } from '../../store/offers-data/selectors';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
+import { AppRoute, AuthorizationStatus, FavoriteOfferStatus } from '../../const';
+import { createFavoriteOffer } from '../../store/api-actions';
 
 const IMAGES_MAX_COUNT = 6;
 
@@ -15,6 +18,8 @@ const RoomPage = () => {
   const currentOffer = useAppSelector(getCurrentOffer);
   const isCurrentOfferLoaded = useAppSelector(getCurrentOfferLoadedState);
   const nearPlaces = useAppSelector(getNearPlaces);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (id) {
@@ -35,6 +40,14 @@ const RoomPage = () => {
   if (!currentOffer) {
     return <h1>No offer loaded</h1>;
   }
+
+  const handleButtonClick = () => {
+    if (authorizationStatus === AuthorizationStatus.NoAuth || authorizationStatus === AuthorizationStatus.Unknown) {
+      navigate(AppRoute.Login);
+    } else {
+      dispatch(createFavoriteOffer({ hotelId: currentOffer.id, status: currentOffer.isFavorite ? FavoriteOfferStatus.NotFavorite : FavoriteOfferStatus.Favorite }));
+    }
+  };
 
 
   return (
@@ -68,8 +81,16 @@ const RoomPage = () => {
                 <h1 className="property__name" data-testid="room-page-title">
                   {currentOffer.title}
                 </h1>
-                <button className="property__bookmark-button button" type="button">
-                  <svg className="property__bookmark-icon" width="31" height="33">
+                <button
+                  className="property__bookmark-button property__bookmark-button--active button"
+                  onClick={handleButtonClick}
+                  type="button"
+                >
+                  <svg
+                    className={`property__bookmark-icon ${currentOffer.isFavorite && 'place-card__bookmark-icon'}`}
+                    width="31"
+                    height="33"
+                  >
                     <use xlinkHref="#icon-bookmark"></use>
                   </svg>
                   <span className="visually-hidden">To bookmarks</span>
