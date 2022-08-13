@@ -8,8 +8,8 @@ type PlacesListPropsTypes = {
 }
 
 const PlacesList = ({ places }: PlacesListPropsTypes) => {
-  const dipatch = useAppDispatch();
-  const onPlaceSelect = (id: IOffer['id'] | null) => dipatch(highlightCard(id));
+  const dispatch = useAppDispatch();
+  const onPlaceSelect = (id: IOffer['id'] | null) => dispatch(highlightCard(id));
 
   return (
     <div className="cities__places-list places__list tabs__content">
