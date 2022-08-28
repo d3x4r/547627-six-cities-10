@@ -3,12 +3,13 @@ import { useAppSelector } from '../../hooks';
 import { AuthorizationStatus, AppRoute } from '../../const';
 import { useAppDispatch } from '../../hooks';
 import { logoutAction } from '../../store/api-actions';
-import { getAuthorizationStatus } from '../../store/user-process/selectors';
+import { getAuthorizationStatus, getCurrentUserEmail } from '../../store/user-process/selectors';
 import { getFavoritesOffers } from '../../store/offers-data/selectors';
 
 
 const Navigation = () => {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const currentUserEmail = useAppSelector(getCurrentUserEmail);
   const favoritesItems = useAppSelector(getFavoritesOffers);
   const dispatch = useAppDispatch();
 
@@ -26,7 +27,7 @@ const Navigation = () => {
               <Link className="header__nav-link header__nav-link--profile" to={AppRoute.Favorites}>
                 <div className="header__avatar-wrapper user__avatar-wrapper">
                 </div>
-                <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
+                <span className="header__user-name user__name">{currentUserEmail ? currentUserEmail : 'missing user email'}</span>
                 <span className="header__favorite-count">{favoritesItems.length}</span>
               </Link>
             </li>

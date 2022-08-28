@@ -18,7 +18,7 @@ export const offerProcess = createSlice({
     selectCity: (state: OffersProcess, action: PayloadAction<City>) => {
       state.selectedCity = action.payload;
     },
-    selectOfferOption: (state: OffersProcess, action: PayloadAction< OffersOption>) => {
+    selectOfferOption: (state: OffersProcess, action: PayloadAction<OffersOption>) => {
       state.selectedOfferOption = action.payload;
     },
     highlightCard: (state: OffersProcess, action: PayloadAction<number | null>) => {

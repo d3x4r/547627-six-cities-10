@@ -14,7 +14,7 @@ type PlaceCardPropsTypes = {
   cardType?: CardType,
 }
 
-const PlaceCard = ({ place: { id, city: { name }, type, price, previewImage, rating, title, isFavorite, isPremium }, cardType = CardType.cities, onSelect = () => ({}) }: PlaceCardPropsTypes) => {
+const PlaceCard = ({ place: { id, type, price, previewImage, rating, title, isFavorite, isPremium }, cardType = CardType.cities, onSelect = () => ({}) }: PlaceCardPropsTypes) => {
   const imgWidth = cardType === CardType.favorite ? 150 : 260;
   const imgHeight = cardType === CardType.favorite ? 110 : 200;
   const dispatch = useAppDispatch();
@@ -43,9 +43,9 @@ const PlaceCard = ({ place: { id, city: { name }, type, price, previewImage, rat
         )
       }
       <div className={`${cardType}__image-wrapper place-card__image-wrapper`}>
-        <a href="#">
+        <div>
           <img className="place-card__image" src={previewImage} width={imgWidth} height={imgHeight} alt={title} />
-        </a>
+        </div>
       </div>
       <div className={`${cardType === CardType.favorite ? `${cardType}__card-info` : ''} place-card__info`}>
         <div className="place-card__price-wrapper">
@@ -71,7 +71,7 @@ const PlaceCard = ({ place: { id, city: { name }, type, price, previewImage, rat
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={`/offer/${String(id)}`}>{name}</Link>
+          <Link to={`/offer/${String(id)}`}>{title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div >
