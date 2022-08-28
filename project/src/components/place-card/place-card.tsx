@@ -43,9 +43,9 @@ const PlaceCard = ({ place: { id, city: { name }, type, price, previewImage, rat
         )
       }
       <div className={`${cardType}__image-wrapper place-card__image-wrapper`}>
-        <a href="#">
+        <div>
           <img className="place-card__image" src={previewImage} width={imgWidth} height={imgHeight} alt={title} />
-        </a>
+        </div>
       </div>
       <div className={`${cardType === CardType.favorite ? `${cardType}__card-info` : ''} place-card__info`}>
         <div className="place-card__price-wrapper">
